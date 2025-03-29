@@ -1,0 +1,343 @@
+/* Animação de gradient melhorada */
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Animação para elementos entrando na tela */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efeito de pulso para elementos importantes */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Animação para spinner de carregamento */
+@keyframes spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Importação de fontes */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Estilo base da página */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.loan-dashboard {
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #0f172a, #1e3a8a, #9333ea, #2563eb);
+    background-size: 300% 300%;
+    animation: gradientFlow 15s ease infinite;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header com visual de vidro fosco */
+.app-header {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.app-title {
+    color: white;
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+}
+
+.profit-container {
+    text-align: right;
+}
+
+.profit-label {
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.profit-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0;
+    color: #34c759;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Métricas - Cards com efeito de vidro */
+.metrics-section {
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease-out;
+    animation-delay: 0.2s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.metric-card {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    height: 100%;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    position: relative;
+    overflow: hidden;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.metric-card:nth-child(1) {
+    border-left: 5px solid #3b82f6;
+}
+
+.metric-card:nth-child(2) {
+    border-left: 5px solid #10b981;
+}
+
+.metric-card:nth-child(3) {
+    border-left: 5px solid #8b5cf6;
+}
+
+.metric-card:nth-child(4) {
+    border-left: 5px solid #f59e0b;
+}
+
+.metric-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #1e3a8a;
+}
+
+.metric-label {
+    display: flex;
+    align-items: center;
+    color: #64748b;
+    font-weight: 500;
+}
+
+.metric-icon {
+    margin-right: 0.5rem;
+}
+
+/* Gráficos com estilo de cartão */
+.chart-container-main, .chart-container-secondary {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: all 0.3s ease;
+}
+
+.chart-container-main {
+    animation: fadeInUp 0.8s ease-out;
+    animation-delay: 0.4s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    border-left: 5px solid #3b82f6;
+}
+
+.chart-container-secondary:nth-of-type(1) {
+    animation: fadeInUp 0.8s ease-out;
+    animation-delay: 0.6s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    border-left: 5px solid #f59e0b;
+}
+
+.chart-container-secondary:nth-of-type(2) {
+    animation: fadeInUp 0.8s ease-out;
+    animation-delay: 0.8s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+    border-left: 5px solid #8b5cf6;
+}
+
+.chart-container-main:hover, .chart-container-secondary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+
+.chart-title {
+    color: #1e3a8a;
+    font-weight: 700;
+    margin: 0 0 1.5rem 0;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    font-size: 1.25rem;
+}
+
+.chart-wrapper {
+    position: relative;
+}
+
+/* Estilos para elementos do Recharts */
+.recharts-wrapper {
+    margin: 0 auto;
+}
+
+.recharts-layer.recharts-cartesian-axis-tick-value tspan {
+    font-weight: 500;
+    font-size: 0.75rem;
+}
+
+.recharts-legend-item-text {
+    font-weight: 600 !important;
+    font-size: 0.8rem !important;
+}
+
+.recharts-default-tooltip {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border-radius: 8px !important;
+    border: none !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
+    padding: 0.75rem !important;
+}
+
+.recharts-tooltip-label {
+    color: #1e3a8a !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.5rem !important;
+}
+
+.recharts-tooltip-item {
+    padding: 2px 0 !important;
+}
+
+.recharts-tooltip-item-name, .recharts-tooltip-item-value {
+    font-size: 0.8rem !important;
+}
+
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+    stroke: rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Loading spinner */
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    animation: spinner 1s linear infinite;
+}
+
+/* Footer estilo */
+.app-footer {
+    margin-top: auto;
+    padding: 1.5rem 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    text-align: center;
+    animation: fadeInUp 0.8s ease-out;
+    animation-delay: 1s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.app-footer p {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .loan-dashboard {
+        padding: 1.5rem;
+    }
+
+    .chart-container-main, .chart-container-secondary {
+        padding: 1.25rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .loan-dashboard {
+        padding: 1rem;
+    }
+
+    .app-header {
+        padding: 1rem;
+    }
+
+    .app-title {
+        font-size: 1.5rem;
+    }
+
+    .profit-value {
+        font-size: 1.5rem;
+    }
+
+    .metric-card {
+        padding: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    .metric-value {
+        font-size: 1.5rem;
+    }
+
+    .chart-container-main, .chart-container-secondary {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .chart-title {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+}

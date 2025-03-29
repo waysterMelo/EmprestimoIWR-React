@@ -1,0 +1,92 @@
+/* Fundo animado com gradiente azul-esverdeado */
+.background-money {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    overflow: hidden;
+}
+.particle {
+    position: absolute;
+    color: #16a34a;
+    font-weight: bold;
+    pointer-events: none; /* Impede interações com as partículas */
+}
+
+
+/* Estilização do Card */
+.home-card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 600px;
+    width: 100%;
+    animation: fadeIn 1s ease-in-out;
+    zoom: 1.2;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Título e subtítulo */
+.home-subtitle {
+    font-size: 16px;
+    color: #9ca3af;
+    margin-bottom: 20px;
+}
+
+/* Container dos botões */
+.button-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Botões */
+.btn-home {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-home:hover {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    transform: scale(1.05);
+}
+
+/* Botões de contorno */
+.btn-outline {
+    background: transparent;
+    border: 2px solid #16a34a;
+    color: #16a34a;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-outline:hover {
+    background: rgba(22, 163, 74, 0.2);
+    transform: scale(1.05);
+}

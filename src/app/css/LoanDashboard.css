@@ -5,7 +5,35 @@
     100% { background-position: 0% 50%; }
 }
 
-/* Animação para elementos entrando na tela */
+/* Animações e efeitos que não são possíveis com Tailwind puro */
+/* Spinner de carregamento */
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    border-left-color: #3b82f6;
+    animation: spinner 1s linear infinite;
+    margin: 2rem auto;
+}
+
+@keyframes spinner {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Animação de fade-in para cards e gráficos */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -17,327 +45,355 @@
     }
 }
 
-/* Efeito de pulso para elementos importantes */
+.metric-card {
+    animation: fadeInUp 0.5s ease-out forwards;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    border-left: 5px solid #3b82f6;
+}
+
+.metric-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.chart-container-main,
+.chart-container-secondary {
+    animation: fadeInUp 0.7s ease-out forwards;
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.chart-container-main {
+    border-left: 5px solid #3b82f6;
+}
+
+.chart-container-secondary {
+    border-left: 5px solid #8b5cf6;
+}
+
+.chart-container-main:hover,
+.chart-container-secondary:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Efeito de pulsação para o valor de lucro total */
 @keyframes pulse {
+    0% {
+        text-shadow: 0 0 0 rgba(139, 92, 246, 0);
+    }
+    50% {
+        text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
+    }
+    100% {
+        text-shadow: 0 0 0 rgba(139, 92, 246, 0);
+    }
+}
+
+@keyframes slideUpFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.metric-card, .chart-container-main, .chart-container-secondary, .table tbody tr {
+    animation: slideUpFadeIn 0.5s ease-out forwards;
+}
+
+/* Efeito de pulso para o botão de busca */
+@keyframes pulseBotao {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
 }
 
-/* Animação para spinner de carregamento */
-@keyframes spinner {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Importação de fontes */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
 /* Estilo base da página */
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-.loan-dashboard {
+.min-vh-100.bg-white {
     min-height: 100vh;
     background: linear-gradient(-45deg, #0f172a, #1e3a8a, #9333ea, #2563eb);
     background-size: 300% 300%;
     animation: gradientFlow 15s ease infinite;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
 }
 
-/* Header com visual de vidro fosco */
-.app-header {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 16px;
+/* Header estilizado */
+header.bg-white {
+    background: linear-gradient(to right, #3b82f6, #8b5cf6) !important;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    padding: 1.5rem;
-    margin-bottom: 2rem;
-    animation: fadeInUp 0.8s ease-out;
+    border-bottom: none !important;
 }
 
-.app-title {
-    color: white;
-    margin: 0;
-    font-weight: 700;
-    font-size: 1.8rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    letter-spacing: 0.5px;
-}
-
-.profit-container {
-    text-align: right;
-}
-
-.profit-label {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.8);
-    margin-bottom: 0.25rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.profit-value {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin: 0;
-    color: #34c759;
+header h1.h5, header p.small {
+    color: white !important;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* Métricas - Cards com efeito de vidro */
-.metrics-section {
-    margin-bottom: 2rem;
-    animation: fadeInUp 0.8s ease-out;
-    animation-delay: 0.2s;
-    opacity: 0;
-    animation-fill-mode: forwards;
-}
-
-.metric-card {
+/* Container principal com design de cartão flutuante */
+main .container {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    padding: 1.5rem;
-    height: 100%;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    position: relative;
     overflow: hidden;
-}
-
-.metric-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-}
-
-.metric-card:nth-child(1) {
-    border-left: 5px solid #3b82f6;
-}
-
-.metric-card:nth-child(2) {
-    border-left: 5px solid #10b981;
-}
-
-.metric-card:nth-child(3) {
-    border-left: 5px solid #8b5cf6;
-}
-
-.metric-card:nth-child(4) {
-    border-left: 5px solid #f59e0b;
-}
-
-.metric-value {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: #1e3a8a;
-}
-
-.metric-label {
-    display: flex;
-    align-items: center;
-    color: #64748b;
-    font-weight: 500;
-}
-
-.metric-icon {
-    margin-right: 0.5rem;
-}
-
-/* Gráficos com estilo de cartão */
-.chart-container-main, .chart-container-secondary {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
     border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+/* Estilização da tabela */
+.table-responsive {
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-bottom: 0;
+}
+
+.table thead {
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+}
+
+.table th {
+    color: white !important;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+    border: none;
+}
+
+.table td {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    color: #334155;
+}
+
+.table tbody tr {
+    transition: all 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #f8fafc;
+    transform: translateY(-2px);
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Estilização dos botões */
+.btn {
+    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    transform: translateY(0);
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    border: none;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(to right, #2563eb, #7c3aed);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    transform: translateY(-2px);
+}
+
+.btn-secondary, .btn-outline-secondary {
+    border: 2px solid #e2e8f0;
+    color: #64748b;
     transition: all 0.3s ease;
 }
 
-.chart-container-main {
-    animation: fadeInUp 0.8s ease-out;
-    animation-delay: 0.4s;
-    opacity: 0;
-    animation-fill-mode: forwards;
-    border-left: 5px solid #3b82f6;
+.btn-secondary:hover, .btn-outline-secondary:hover {
+    background-color: #f8fafc;
+    color: #3b82f6;
+    border-color: #3b82f6;
+    transform: translateY(-2px);
 }
 
-.chart-container-secondary:nth-of-type(1) {
-    animation: fadeInUp 0.8s ease-out;
-    animation-delay: 0.6s;
-    opacity: 0;
-    animation-fill-mode: forwards;
-    border-left: 5px solid #f59e0b;
+.btn-outline-primary {
+    border: 2px solid #3b82f6;
+    color: #3b82f6;
 }
 
-.chart-container-secondary:nth-of-type(2) {
-    animation: fadeInUp 0.8s ease-out;
-    animation-delay: 0.8s;
-    opacity: 0;
-    animation-fill-mode: forwards;
-    border-left: 5px solid #8b5cf6;
+.btn-outline-primary:hover {
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
 }
 
-.chart-container-main:hover, .chart-container-secondary:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
-}
-
-.chart-title {
-    color: #1e3a8a;
-    font-weight: 700;
-    margin: 0 0 1.5rem 0;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    font-size: 1.25rem;
-}
-
-.chart-wrapper {
-    position: relative;
-}
-
-/* Estilos para elementos do Recharts */
-.recharts-wrapper {
-    margin: 0 auto;
-}
-
-.recharts-layer.recharts-cartesian-axis-tick-value tspan {
-    font-weight: 500;
-    font-size: 0.75rem;
-}
-
-.recharts-legend-item-text {
-    font-weight: 600 !important;
-    font-size: 0.8rem !important;
-}
-
+/* Melhorar aparência dos gráficos Recharts */
 .recharts-default-tooltip {
-    background-color: rgba(255, 255, 255, 0.95) !important;
-    border-radius: 8px !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
     border: none !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) !important;
-    padding: 0.75rem !important;
+    padding: 12px !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
 }
 
 .recharts-tooltip-label {
-    color: #1e3a8a !important;
-    font-weight: 600 !important;
-    margin-bottom: 0.5rem !important;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #334155;
 }
 
-.recharts-tooltip-item {
-    padding: 2px 0 !important;
+.recharts-layer.recharts-active-dot {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-.recharts-tooltip-item-name, .recharts-tooltip-item-value {
-    font-size: 0.8rem !important;
+/* Footer estilizado */
+footer.bg-white {
+    background: linear-gradient(to right, #1e3a8a, #3b82f6) !important;
+    border-top: none !important;
+    padding: 1rem 0;
 }
 
-.recharts-cartesian-grid-horizontal line,
-.recharts-cartesian-grid-vertical line {
-    stroke: rgba(0, 0, 0, 0.1) !important;
+footer p, footer svg {
+    color: white !important;
+    opacity: 0.9;
 }
 
-/* Loading spinner */
-.loading-container {
+/* Estilização para input e form */
+.form-control {
+    border-radius: 50px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Card de lucro estilizado */
+.text-end .profit-value {
+    font-weight: 700;
+    background: #0f172a;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
+}
+
+/* Alert estilizado */
+.alert-danger {
+    background-color: #fee2e2;
+    border-left: 5px solid #ef4444;
+    padding: 1rem;
+    border-radius: 8px;
+    color: #b91c1c;
+    margin-bottom: 1.5rem;
     display: flex;
-    justify-content: center;
     align-items: center;
-    min-height: 400px;
-}
-
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    border-top-color: #ffffff;
-    animation: spinner 1s linear infinite;
-}
-
-/* Footer estilo */
-.app-footer {
-    margin-top: auto;
-    padding: 1.5rem 0;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    text-align: center;
-    animation: fadeInUp 0.8s ease-out;
-    animation-delay: 1s;
-    opacity: 0;
-    animation-fill-mode: forwards;
-}
-
-.app-footer p {
-    color: rgba(255, 255, 255, 0.8);
-    margin: 0;
-    font-size: 0.875rem;
+    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.1);
 }
 
 /* Responsividade */
-@media (max-width: 992px) {
-    .loan-dashboard {
-        padding: 1.5rem;
+@media (max-width: 768px) {
+    main .container {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        padding: 1rem;
     }
 
-    .chart-container-main, .chart-container-secondary {
-        padding: 1.25rem;
+    .btn {
+        padding: 0.5rem 1rem;
+    }
+
+    .table th, .table td {
+        padding: 0.75rem;
+    }
+
+    .metric-card .me-3 {
+        margin-right: 0.5rem !important;
+    }
+
+    .chart-container-main,
+    .chart-container-secondary {
+        padding: 1rem;
     }
 }
 
-@media (max-width: 768px) {
-    .loan-dashboard {
-        padding: 1rem;
-    }
+/* Dropdown */
+.dropdown-menu {
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 0.5rem;
+    background-color: white;
+}
 
-    .app-header {
-        padding: 1rem;
-    }
+.dropdown-item {
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    transition: all 0.2s ease;
+    color: #334155;
+}
 
-    .app-title {
-        font-size: 1.5rem;
-    }
+.dropdown-item:hover {
+    background-color: #f0f7ff;
+    transform: translateX(2px);
+    color: #3b82f6;
+}
 
-    .profit-value {
-        font-size: 1.5rem;
-    }
+.dropdown-toggle {
+    border-radius: 50px;
+    padding: 0.6rem 1.5rem;
+    font-weight: 600;
+    background: white;
+    color: #64748b;
+    border: 2px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
 
-    .metric-card {
-        padding: 1.25rem;
-        margin-bottom: 1rem;
-    }
+.dropdown-toggle:hover,
+.dropdown-toggle:focus {
+    border-color: #3b82f6;
+    color: #3b82f6;
+    background-color: white;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
 
-    .metric-value {
-        font-size: 1.5rem;
-    }
+/* Card header estilizado */
+.card-header {
+    background: linear-gradient(to right, #f8fafc, #f1f5f9) !important;
+    border-bottom: none !important;
+    padding: 1rem 1.5rem;
+}
 
-    .chart-container-main, .chart-container-secondary {
-        padding: 1rem;
-        margin-bottom: 1rem;
-    }
+/* Ícones estilizados */
+.text-primary, .text-success, .text-info, .text-warning {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
 
-    .chart-title {
-        font-size: 1.1rem;
-        margin-bottom: 1rem;
-    }
+.text-primary svg,
+.text-success svg,
+.text-info svg,
+.text-warning svg {
+    transition: transform 0.3s ease;
+}
+
+.text-primary svg:hover,
+.text-success svg:hover,
+.text-info svg:hover,
+.text-warning svg:hover {
+    transform: scale(1.2);
 }

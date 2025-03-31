@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import {
     BarChart, Bar, XAxis, YAxis, Tooltip, Legend,
     ResponsiveContainer, CartesianGrid, LineChart, Line, Area
@@ -12,18 +11,17 @@ import { Container, Row, Col, Card, Alert, Spinner, Table } from 'react-bootstra
 import CountUp from 'react-countup';
 import '../css/LoanDashboard.css';
 import api from '../../api'
-
+import { useNavigate } from 'react-router-dom';
+import { ArrowLeft } from 'lucide-react';
+import BotaoSair from "./BotaoSair";
 
 const LoanOverviewDashboard = () => {
-    // Estado para os dados dos cards/gráficos (endpoint original)
     const [loanData, setLoanData] = useState([]);
-    // NOVO ESTADO: para a tabela detalhada (novo endpoint)
     const [detailedMonthlyData, setDetailedMonthlyData] = useState([]);
-
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
     const monthNames = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'];
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchDashboardData = async () => {
@@ -80,9 +78,8 @@ const LoanOverviewDashboard = () => {
         };
 
         fetchDashboardData();
-    }, []); // Dependência vazia para rodar apenas uma vez
+    }, []);
 
-    // --- Cálculos para os Cards/Gráficos (baseados nos dados originais) ---
     const totalLentCards = loanData.reduce((sum, item) => sum + item.totalLent, 0);
     const totalExpectedReturnCards = loanData.reduce((sum, item) => sum + item.expectedReturn, 0);
     const totalProfitCards = totalExpectedReturnCards - totalLentCards;
@@ -90,17 +87,12 @@ const LoanOverviewDashboard = () => {
         ? (loanData.reduce((sum, item) => sum + item.interestRate, 0) / loanData.length)
         : 0;
     const totalActiveLoansCards = loanData.length > 0
-        ? loanData.reduce((sum, item) => sum + item.activeLoans, 0) // Soma dos clientes por mês (pode não ser o ideal, talvez usar o último mês?)
+        ? loanData.reduce((sum, item) => sum + item.activeLoans, 0)
         : 0;
-
-    // --- NOVO: Cálculos para o Footer da Tabela Detalhada ---
     const totalLentDetailed = detailedMonthlyData.reduce((sum, item) => sum + item.totalLent, 0);
     const totalExpectedReturnDetailed = detailedMonthlyData.reduce((sum, item) => sum + item.expectedReturn, 0);
     const totalProfitDetailed = detailedMonthlyData.reduce((sum, item) => sum + item.profit, 0);
-    // Note: O lucro total da tabela pode diferir ligeiramente de (totalExpectedReturnDetailed - totalLentDetailed)
-    // se houver arredondamentos no cálculo do lucro por mês no backend. Usar a soma do lucro mensal é mais preciso.
 
-    // Função formatCurrency original
     const formatCurrency = (value) => {
         if (typeof value !== 'number' || isNaN(value)) {
             return 'R$ 0,00';
@@ -112,6 +104,7 @@ const LoanOverviewDashboard = () => {
     const MetricCard = ({ title, value, icon: Icon, color = 'primary', isCurrency = false, isPercent = false, decimals = 0 }) => (
         <Card className="shadow-sm border-0 h-100 metric-card slide-up-fade-in">
             <Card.Body className="d-flex align-items-center">
+
                 <div className={`text-${color} me-3`}>
                     <Icon size={28}/>
                 </div>
@@ -137,12 +130,23 @@ const LoanOverviewDashboard = () => {
     return (
         <div className="min-vh-100 bg-white">
             {/* Header */}
+
             <header className="bg-white shadow-sm sticky-top border-bottom">
+                <button
+                    onClick={() => navigate('/home')}
+                    className="btn btn-dark position-absolute top-0 start-0 m-3 d-flex align-items-center"
+                    style={{zIndex: 10}}
+                >
+                    <ArrowLeft size={20} className="me-2 text-info"/>
+                    Tela Inicial
+                </button>
+                <BotaoSair/>
                 <Container className="py-3">
                     <Row className="align-items-center">
+
                         <Col>
                             <h1 className="h5 fw-bold text-dark mb-0 d-flex align-items-center">
-                                <BarChart2 className="me-2 text-primary" />
+                                <BarChart2 className="me-2 text-primary"/>
                                 Painel de Empréstimos
                             </h1>
                         </Col>
@@ -164,7 +168,7 @@ const LoanOverviewDashboard = () => {
                 <Container className="py-4">
                     {loading ? (
                         <div className="text-center py-5">
-                            <Spinner animation="border" variant="primary" />
+                            <Spinner animation="border" variant="primary"/>
                             <p className="mt-2 text-muted">Carregando dados...</p>
                         </div>
                     ) : error ? (

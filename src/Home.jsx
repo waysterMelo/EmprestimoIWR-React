@@ -59,14 +59,17 @@ const Home = () => {
                     <button className="btn-home" onClick={() => navigate("/realizar-emprestimo")}>
                         Cadastrar Empréstimo
                     </button>
-                    <button className="btn-outline" onClick={() => navigate("/consultar-cliente")}>
+                    <button className="btn btn-primary" onClick={() => navigate("/consultar-cliente")}>
                         Consultar Cliente
                     </button>
-                    <button className="btn-outline" onClick={() => navigate("/cadastrar-cliente")}>
+                    <button className="btn btn-primary" onClick={() => navigate("/cadastrar-cliente")}>
                         Cadastrar Cliente
                     </button>
-                    <button className="btn-outline" onClick={() => navigate("/dashboard")}>
+                    <button className="btn btn-primary" onClick={() => navigate("/dashboard")}>
                         Dashboard
+                    </button>
+                    <button className="btn btn-primary" onClick={() => navigate("/emprestimo")}>
+                        Pesquisar Empréstimos
                     </button>
                 </div>
             </div>

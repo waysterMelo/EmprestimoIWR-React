@@ -258,7 +258,7 @@ const LoanOverviewDashboard = () => {
                                         <Card.Body>
                                             <h3 className="h6 fw-semibold text-dark mb-3 d-flex align-items-center">
                                                 <Percent className="me-2 text-warning" size={18} />
-                                                Taxa Média 
+                                                Taxa Média
                                             </h3>
                                             {/* Gráfico continua usando loanData */}
                                             <div style={{ height: '250px' }}>
@@ -281,7 +281,7 @@ const LoanOverviewDashboard = () => {
                                         <Card.Body>
                                             <h3 className="h6 fw-semibold text-dark mb-3 d-flex align-items-center">
                                                 <Users className="me-2 text-info" size={18} />
-                                                Clientes Ativos por Mês 
+                                                Clientes Ativos por Mês
                                             </h3>
                                             {/* Gráfico continua usando loanData */}
                                             <div style={{ height: '250px' }}>

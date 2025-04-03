@@ -1,0 +1,162 @@
+/* Estendendo a animação de gradient da ConsultarCliente.css */
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Adicionando animação para o botão de pesquisa */
+@keyframes pulseBotao {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Animação para elementos entrando na tela */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Layout principal - reutilizando background do outro componente */
+.background-consultar {
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #0f172a, #1e3a8a, #9333ea, #2563eb);
+    background-size: 300% 300%;
+    animation: gradientFlow 15s ease infinite;
+    padding: 2rem;
+}
+
+/* Estilização específica para os filtros */
+.btn-search {
+    padding: 0.6rem 2rem;
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    color: white;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-search:hover:not(:disabled) {
+    background: linear-gradient(to right, #2563eb, #7c3aed);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    animation: pulseBotao 2s infinite;
+}
+
+.btn-search:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* Status badges estendidos */
+.badge-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.badge-ativo {
+    background-color: #10b981;
+    color: white;
+}
+
+.badge-pendente {
+    background-color: #f59e0b;
+    color: white;
+}
+
+.badge-atrasado {
+    background-color: #ef4444;
+    color: white;
+}
+
+/* Melhorando o formulário de busca */
+.input-group .input-group-text {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+}
+
+.input-group .form-control {
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 0.6rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-group .form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+/* Melhora na tabela de resultados */
+.table-emprestimos {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.table-emprestimos thead {
+    background: linear-gradient(to right, #3b82f6, #8b5cf6);
+}
+
+.table-emprestimos th {
+    color: white;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+    border: none;
+}
+
+.table-emprestimos td {
+    padding: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+    color: #334155;
+}
+
+.table-emprestimos tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+.table-emprestimos tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .consultar-container {
+        padding: 0;
+    }
+
+    .card-consultar {
+        border-radius: 0;
+    }
+
+    .header-consultar h1 {
+        font-size: 1.5rem;
+    }
+
+    .table-emprestimos {
+        font-size: 0.9rem;
+    }
+
+    .table-emprestimos th,
+    .table-emprestimos td {
+        padding: 0.75rem 0.5rem;
+    }
+}

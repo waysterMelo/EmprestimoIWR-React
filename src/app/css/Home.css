@@ -73,20 +73,3 @@
     background: linear-gradient(135deg, #22c55e, #16a34a);
     transform: scale(1.05);
 }
-
-/* Botões de contorno */
-.btn-outline {
-    background: transparent;
-    border: 2px solid #16a34a;
-    color: #16a34a;
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.btn-outline:hover {
-    background: rgba(22, 163, 74, 0.2);
-    transform: scale(1.05);
-}

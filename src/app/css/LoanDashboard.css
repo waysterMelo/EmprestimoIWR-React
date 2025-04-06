@@ -1,399 +1,123 @@
-/* Animação de gradient melhorada */
-@keyframes gradientFlow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/* Importa os estilos base de PesquisarEmprestimos.css */
+@import url('./PesquisarEmprestimos.css');
+
+/* Estilos específicos para o LoanOverviewDashboard, se necessário,
+   mas primariamente usando as classes de PesquisarEmprestimos.css */
+
+/* Container principal - usa a mesma classe para consistência */
+.pesquisa-emprestimos-container {
+    /* Herda a maioria dos estilos de PesquisarEmprestimos.css */
+    /* Pode adicionar ou sobrescrever estilos aqui se precisar de algo específico */
+    padding: 25px; /* Ajuste o padding se necessário */
 }
 
-/* Animações e efeitos que não são possíveis com Tailwind puro */
-/* Spinner de carregamento */
-.spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid rgba(0, 0, 0, 0.1);
-    border-radius: 50%;
-    border-left-color: #3b82f6;
-    animation: spinner 1s linear infinite;
-    margin: 2rem auto;
+/* Título do dashboard - usa a mesma classe */
+.pesquisa-emprestimos-title {
+    /* Herda estilos */
+    margin-bottom: 25px; /* Espaçamento abaixo do título */
+    text-align: center; /* Centraliza o título principal */
 }
 
-@keyframes spinner {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/* Subtítulos das seções - usa a mesma classe */
+.pesquisa-emprestimos-subtitle {
+    /* Herda estilos */
+    margin-top: 30px; /* Espaço acima dos subtítulos */
+    margin-bottom: 15px; /* Espaço abaixo dos subtítulos */
+    border-bottom: 1px solid #eee; /* Linha separadora leve */
+    padding-bottom: 5px; /* Espaçamento abaixo da linha */
 }
 
-/* Animação de fade-in para cards e gráficos */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Grid para os cards de resumo */
+.dashboard-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Grid responsivo */
+    gap: 20px; /* Espaçamento entre os cards */
+    margin-bottom: 30px; /* Espaçamento abaixo do grid */
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Estilo dos cards de resumo */
+.dashboard-card {
+    background-color: #ffffff; /* Fundo branco */
+    border-radius: 8px; /* Bordas arredondadas */
+    padding: 18px; /* Espaçamento interno */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    text-align: center; /* Centraliza o conteúdo */
+    border: 1px solid #e0e0e0; /* Borda leve */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Transição suave */
 }
 
-.metric-card {
-    animation: fadeInUp 0.5s ease-out forwards;
-    border-radius: 12px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border-left: 5px solid #3b82f6;
+.dashboard-card:hover {
+    transform: translateY(-3px); /* Efeito de levantar ao passar o mouse */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada */
 }
 
-.metric-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+.dashboard-card h3 {
+    margin-top: 0;
+    margin-bottom: 8px; /* Espaçamento abaixo do título do card */
+    font-size: 0.95rem; /* Tamanho da fonte do título */
+    color: #555; /* Cor do título */
 }
 
-.chart-container-main,
-.chart-container-secondary {
-    animation: fadeInUp 0.7s ease-out forwards;
-    background-color: white;
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
+.dashboard-card p {
+    margin: 0;
+    font-size: 1.3rem; /* Tamanho da fonte do valor */
+    font-weight: bold; /* Texto em negrito */
+    color: #333; /* Cor do valor */
 }
 
-.chart-container-main {
-    border-left: 5px solid #3b82f6;
+/* Seção das tabelas - usa a mesma classe */
+.pesquisa-emprestimos-section {
+    /* Herda estilos */
+    margin-top: 25px; /* Espaçamento acima da seção da tabela */
 }
 
-.chart-container-secondary {
-    border-left: 5px solid #8b5cf6;
+/* Tabela - usa a mesma classe */
+.pesquisa-emprestimos-table {
+    /* Herda a maioria dos estilos */
+    margin-top: 10px; /* Espaçamento acima da tabela */
 }
 
-.chart-container-main:hover,
-.chart-container-secondary:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+/* Cabeçalho da tabela - usa a mesma classe */
+.pesquisa-emprestimos-table th {
+    /* Herda estilos */
+    background-color: #f8f9fa; /* Fundo ligeiramente diferente para cabeçalho no dashboard */
 }
 
-/* Efeito de pulsação para o valor de lucro total */
-@keyframes pulse {
-    0% {
-        text-shadow: 0 0 0 rgba(139, 92, 246, 0);
-    }
-    50% {
-        text-shadow: 0 0 10px rgba(139, 92, 246, 0.5);
-    }
-    100% {
-        text-shadow: 0 0 0 rgba(139, 92, 246, 0);
-    }
+/* Células da tabela - usa a mesma classe */
+.pesquisa-emprestimos-table td {
+    /* Herda estilos */
 }
 
-@keyframes slideUpFadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Linhas da tabela - usa a mesma classe */
+.pesquisa-emprestimos-table tr:nth-child(even) {
+    /* Herda estilos de linha alternada */
+    background-color: #f9f9f9;
 }
 
-.metric-card, .chart-container-main, .chart-container-secondary, .table tbody tr {
-    animation: slideUpFadeIn 0.5s ease-out forwards;
+.pesquisa-emprestimos-table tr:hover {
+    /* Herda efeito hover */
+    background-color: #f1f1f1;
 }
 
-/* Efeito de pulso para o botão de busca */
-@keyframes pulseBotao {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+/* Mensagem de "Nenhum empréstimo..." */
+.pesquisa-emprestimos-section p {
+    text-align: center;
+    color: #666;
+    margin-top: 15px;
+    font-style: italic;
 }
 
-/* Estilo base da página */
-.min-vh-100.bg-white {
-    min-height: 100vh;
-    background: linear-gradient(-45deg, #0f172a, #1e3a8a, #9333ea, #2563eb);
-    background-size: 300% 300%;
-    animation: gradientFlow 15s ease infinite;
+/* Estilos para loading e erro (opcional, podem usar classes Bootstrap se preferir) */
+.loading-message, .error-message {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1rem;
+    color: #555;
 }
 
-/* Header estilizado */
-header.bg-white {
-    background: linear-gradient(to right, #3b82f6, #8b5cf6) !important;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    border-bottom: none !important;
-}
-
-header h1.h5, header p.small {
-    color: white !important;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* Container principal com design de cartão flutuante */
-main .container {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    padding: 1.5rem;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    animation: fadeInUp 0.8s ease-out;
-}
-
-/* Estilização da tabela */
-.table-responsive {
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-}
-
-.table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-bottom: 0;
-}
-
-.table thead {
-    background: linear-gradient(to right, #3b82f6, #8b5cf6);
-}
-
-.table th {
-    color: white !important;
-    font-weight: 600;
-    padding: 1rem;
-    text-align: left;
-    border: none;
-}
-
-.table td {
-    padding: 1rem;
-    border-bottom: 1px solid #e2e8f0;
-    color: #334155;
-}
-
-.table tbody tr {
-    transition: all 0.2s ease;
-}
-
-.table tbody tr:hover {
-    background-color: #f8fafc;
-    transform: translateY(-2px);
-}
-
-.table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-/* Estilização dos botões */
-.btn {
-    border-radius: 50px;
-    padding: 0.6rem 1.5rem;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    transform: translateY(0);
-}
-
-.btn-primary {
-    background: linear-gradient(to right, #3b82f6, #8b5cf6);
-    border: none;
-    color: white;
-}
-
-.btn-primary:hover {
-    background: linear-gradient(to right, #2563eb, #7c3aed);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-    transform: translateY(-2px);
-}
-
-.btn-secondary, .btn-outline-secondary {
-    border: 2px solid #e2e8f0;
-    color: #64748b;
-    transition: all 0.3s ease;
-}
-
-.btn-secondary:hover, .btn-outline-secondary:hover {
-    background-color: #f8fafc;
-    color: #3b82f6;
-    border-color: #3b82f6;
-    transform: translateY(-2px);
-}
-
-.btn-outline-primary {
-    border: 2px solid #3b82f6;
-    color: #3b82f6;
-}
-
-.btn-outline-primary:hover {
-    background: linear-gradient(to right, #3b82f6, #8b5cf6);
-    color: white;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
-}
-
-/* Melhorar aparência dos gráficos Recharts */
-.recharts-default-tooltip {
-    border-radius: 12px !important;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
-    border: none !important;
-    padding: 12px !important;
-    background-color: rgba(255, 255, 255, 0.95) !important;
-}
-
-.recharts-tooltip-label {
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #334155;
-}
-
-.recharts-layer.recharts-active-dot {
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-}
-
-/* Footer estilizado */
-footer.bg-white {
-    background: linear-gradient(to right, #1e3a8a, #3b82f6) !important;
-    border-top: none !important;
-    padding: 1rem 0;
-}
-
-footer p, footer svg {
-    color: white !important;
-    opacity: 0.9;
-}
-
-/* Estilização para input e form */
-.form-control {
-    border-radius: 50px;
-    padding: 0.8rem 1.5rem;
-    font-size: 1rem;
-    border: 2px solid #e2e8f0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease;
-}
-
-.form-control:focus {
-    border-color: #3b82f6;
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-}
-
-/* Card de lucro estilizado */
-.text-end .profit-value {
-    font-weight: 700;
-    background: #0f172a;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(0 2px 4px rgba(59, 130, 246, 0.3));
-}
-
-/* Alert estilizado */
-.alert-danger {
-    background-color: #fee2e2;
-    border-left: 5px solid #ef4444;
-    padding: 1rem;
-    border-radius: 8px;
-    color: #b91c1c;
-    margin-bottom: 1.5rem;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 4px 6px rgba(239, 68, 68, 0.1);
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    main .container {
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-        padding: 1rem;
-    }
-
-    .btn {
-        padding: 0.5rem 1rem;
-    }
-
-    .table th, .table td {
-        padding: 0.75rem;
-    }
-
-    .metric-card .me-3 {
-        margin-right: 0.5rem !important;
-    }
-
-    .chart-container-main,
-    .chart-container-secondary {
-        padding: 1rem;
-    }
-}
-
-/* Dropdown */
-.dropdown-menu {
-    border-radius: 12px;
-    border: none;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 0.5rem;
-    background-color: white;
-}
-
-.dropdown-item {
-    border-radius: 8px;
-    padding: 0.5rem 1rem;
-    transition: all 0.2s ease;
-    color: #334155;
-}
-
-.dropdown-item:hover {
-    background-color: #f0f7ff;
-    transform: translateX(2px);
-    color: #3b82f6;
-}
-
-.dropdown-toggle {
-    border-radius: 50px;
-    padding: 0.6rem 1.5rem;
-    font-weight: 600;
-    background: white;
-    color: #64748b;
-    border: 2px solid #e2e8f0;
-    transition: all 0.3s ease;
-}
-
-.dropdown-toggle:hover,
-.dropdown-toggle:focus {
-    border-color: #3b82f6;
-    color: #3b82f6;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-/* Card header estilizado */
-.card-header {
-    background: linear-gradient(to right, #f8fafc, #f1f5f9) !important;
-    border-bottom: none !important;
-    padding: 1rem 1.5rem;
-}
-
-/* Ícones estilizados */
-.text-primary, .text-success, .text-info, .text-warning {
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
-}
-
-.text-primary svg,
-.text-success svg,
-.text-info svg,
-.text-warning svg {
-    transition: transform 0.3s ease;
-}
-
-.text-primary svg:hover,
-.text-success svg:hover,
-.text-info svg:hover,
-.text-warning svg:hover {
-    transform: scale(1.2);
+.error-message {
+    color: #dc3545; /* Cor vermelha para erro */
+    background-color: #f8d7da; /* Fundo claro para erro */
+    border: 1px solid #f5c6cb; /* Borda para erro */
+    border-radius: 5px; /* Bordas arredondadas */
 }

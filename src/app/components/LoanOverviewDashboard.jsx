@@ -138,7 +138,7 @@ const LoanOverviewDashboard = () => {
                     style={{zIndex: 10}}
                 >
                     <ArrowLeft size={20} className="me-2 text-info"/>
-                    Tela Inicial
+                    Voltar
                 </button>
                 <BotaoSair/>
                 <Container className="py-3">
